@@ -1,4 +1,5 @@
 // app/components/PomodoroTimer.tsx
+
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Play, Pause, RefreshCw } from 'lucide-react';
 
@@ -28,7 +29,6 @@ export default function PomodoroTimer({
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [sessions, setSessions] = useState(0);
-  const [lastPressed, setLastPressed] = useState<string>('');
 
   const handleTimerComplete = useCallback(() => {
     if (isBreak) {
@@ -77,19 +77,16 @@ export default function PomodoroTimer({
         case ' ':
           event.preventDefault();
           toggleTimer();
-          setLastPressed('SPACE');
           break;
         case 'r':
           event.preventDefault();
           resetTimer();
-          setLastPressed('R');
           break;
         case 'b':
           event.preventDefault();
           if (!isBreak) {
             setIsBreak(true);
             setTimeLeft(BREAK_TIME);
-            setLastPressed('B');
           }
           break;
         case 'w':
@@ -97,7 +94,6 @@ export default function PomodoroTimer({
           if (isBreak) {
             setIsBreak(false);
             setTimeLeft(WORK_TIME);
-            setLastPressed('W');
           }
           break;
       }
@@ -106,16 +102,6 @@ export default function PomodoroTimer({
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [toggleTimer, resetTimer, isBreak, WORK_TIME, BREAK_TIME]);
-
-  // Clear last pressed key
-  useEffect(() => {
-    if (lastPressed) {
-      const timer = setTimeout(() => {
-        setLastPressed('');
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [lastPressed]);
 
   const progress = useMemo(() => {
     const total = isBreak ? BREAK_TIME : WORK_TIME;
@@ -196,11 +182,6 @@ export default function PomodoroTimer({
             <div>R: Reset Timer</div>
             <div>B: Skip to Break</div>
             <div>W: Skip to Work</div>
-            {lastPressed && (
-              <div className="text-blue-500 font-medium mt-2">
-                Last pressed: {lastPressed}
-              </div>
-            )}
           </div>
         </div>
       </div>
