@@ -1,7 +1,6 @@
 {
-    "scripts": {
-      "build": "remix build",
-      "dev": "remix dev",
-      "start": "remix-serve ./build/index.js"
-    }
+    "framework": "remix",
+    "buildCommand": "remix build",
+    "installCommand": "npm install",
+    "outputDirectory": "public"
   }
