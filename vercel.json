@@ -1,6 +1,6 @@
 {
     "framework": "remix",
-    "buildCommand": "remix build",
+    "buildCommand": "npm run build",
     "installCommand": "npm install",
-    "outputDirectory": "public"
+    "devCommand": "npm run dev"
   }
