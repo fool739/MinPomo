@@ -5,16 +5,13 @@ import PomodoroTimer from "~/components/PomodoroTimer";
 export const meta: MetaFunction = () => {
   return [
     { title: "MinPomo" },
-    { name: "description", content: "Minimalistic Pomodoro Timer" },
+    { name: "description", content: "A minimalist Pomodoro timer" },
   ];
 };
 
 export default function Index() {
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-3xl text-zinc-50 font-bold text-center mb-8">
-        MinPomo
-      </h1>
+    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center p-4">
       <PomodoroTimer />
     </div>
   );
