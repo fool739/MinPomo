@@ -1,5 +1,4 @@
 // app/components/PomodoroTimer.tsx
-
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Play, Pause, RefreshCw } from 'lucide-react';
 
@@ -109,14 +108,14 @@ export default function PomodoroTimer({
   }, [timeLeft, isBreak, WORK_TIME, BREAK_TIME]);
 
   return (
-    <div className="w-96 mx-auto p-6 rounded-lg shadow-lg bg-zinc-800">
+    <div className="w-full max-w-sm mx-auto p-4 sm:p-6 shadow-lg bg-zinc-800 font-mono">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-zinc-50 mb-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-zinc-50 mb-4 font-mono">
           {isBreak ? 'Break Time' : 'Work Time'}
         </h2>
         
-        <div className="relative w-48 h-48 mx-auto mb-6">
-          <svg className="w-full h-full transform -rotate-90">
+        <div className="relative w-36 h-36 sm:w-48 sm:h-48 mx-auto mb-6">
+          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 192 192">
             <circle
               className="text-zinc-700"
               strokeWidth="8"
@@ -142,7 +141,7 @@ export default function PomodoroTimer({
             />
           </svg>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <span className="text-4xl text-zinc-50 font-bold">{formatTime(timeLeft)}</span>
+            <span className="text-3xl sm:text-4xl text-zinc-50 font-bold font-mono">{formatTime(timeLeft)}</span>
           </div>
         </div>
 
@@ -176,7 +175,7 @@ export default function PomodoroTimer({
           </div>
           
           {/* Keyboard shortcuts info */}
-          <div className="text-xs text-gray-400 mt-4 space-y-1">
+          <div className="text-xs text-gray-400 mt-4 space-y-1 hidden sm:block">
             <div>Keyboard Shortcuts:</div>
             <div>Space: Start/Pause</div>
             <div>R: Reset Timer</div>
